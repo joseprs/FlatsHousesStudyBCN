@@ -1,3 +1,4 @@
 .ipynb_checkpoints/
 .DS_Store
 flats_env
+__pycache__
