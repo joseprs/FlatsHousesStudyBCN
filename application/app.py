@@ -1,5 +1,6 @@
 import streamlit as st
 
+from predict import predict_flat_value, data_processing
 
 st.set_page_config(layout="wide")
 col1, col2 = st.columns([1, 4])
@@ -14,17 +15,17 @@ with st.form(key='flats_features_form'):
     col3, col4, col5, col6 = st.columns([1,1,1,1])
 
     with col3:
-        input5 = st.text_input("Surface")
-        input1 = st.text_input("Rooms")
+        surface = st.text_input("Surface")
+        rooms = st.text_input("Rooms")
     with col4:
-        input3 = st.text_input("Bathrooms")
-        boolean_value = st.checkbox("Pool")
+        bathrooms = st.text_input("Bathrooms")
+        pool = st.checkbox("Pool")
     with col5:
-        input9 = st.text_input("Environment Value")
-        boolean_value = st.checkbox("Elevator")
+        environment_value = st.text_input("Environment Value")
+        elevator = st.checkbox("Elevator")
     with col6:
-        input7 = st.text_input("Energy Value")
-        boolean_value = st.checkbox("Air-conditioning")
+        energy_value = st.text_input("Energy Value")
+        air_conditioning = st.checkbox("Air-conditioning")
         
         
     neighbor = st.selectbox("Neighbor:", ['Dreta de l Eixample', 'El Raval', 'Barri Gotic',
@@ -55,8 +56,22 @@ with st.form(key='flats_features_form'):
        'Torre Baro', 'La Clota', 'La Trinitat Nova', 'Canyelles',
        'Montbau', 'Vallbona', 'Zona Franca   Port', 'Can Peguera',
        'Baro de Viver'])
-    energy_letter = st.selectbox("Energy Letter:", ["Option 1", "Option 2", "Option 3"])
-    environment_letter = st.selectbox("Environment Letter:", ["Option 1", "Option 2", "Option 3"])
-    floor = st.selectbox("Floor:", ["Option 1", "Option 2", "Option 3"])
+    
+    energy_letter = st.selectbox("Energy Letter:", ["Missing", "A", "B", "C", "D", "E", "F", "G"])
+    environment_letter = st.selectbox("Environment Letter:",  ["Missing", "A", "B", "C", "D", "E", "F", "G"])
+    
+    floor = st.selectbox("Floor:", ['1planta', '2planta', '3planta', '4planta', '5planta', 'Bajos',
+       '6planta', 'Entresuelo', '7planta', '8planta', 'Otro', 'Principal',
+       'Apartirdela15planta', '10planta', 'Sotano', '9planta', '11planta',
+       '13planta', '12planta', '15planta', 'Subsotano', '14planta'])
 
-    st.form_submit_button(label='Submit')
+    submit_button = st.form_submit_button(label='Submit')
+    
+    # process data
+
+    if submit_button:
+        data = data_processing(surface, rooms, bathrooms, pool, environment_value, elevator, energy_value, air_conditioning,
+                    neighbor, energy_letter, environment_letter, floor)
+        
+        prediction = predict_flat_value(data)
+        st.write(f"Your flat value is around: {prediction}€")
