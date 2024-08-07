@@ -27,7 +27,6 @@ with st.form(key='flats_features_form'):
         energy_value = st.text_input("Energy Value")
         air_conditioning = st.checkbox("Air-conditioning")
         
-        
     neighbor = st.selectbox("Neighbor:", ['Dreta de l Eixample', 'El Raval', 'Barri Gotic',
        'L Antiga Esquerra de l Eixample',
        'La Nova Esquerra de l Eixample',
