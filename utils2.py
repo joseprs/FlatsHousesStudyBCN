@@ -14,12 +14,11 @@ def remove_outliers_zscore(df, column, threshold=2):
     z_scores = np.abs((df[column] - df[column].mean()) / df[column].std())
     return df[z_scores < threshold]
 
-def get_data(dir="data/"):
-
+def get_data(dir="new_data/"):
     dataframes = []
-    for file in os.listdir(dir):
+    for file in os.listdir("new_data/"):
         if file[0] != '.':
-            df = pd.read_csv(f"data/{file}")
+            df = pd.read_csv(f"new_data/{file}")
             dataframes.append(df)
     df = pd.concat(dataframes).drop_duplicates().rename(columns={"orientation.1":"orientation_desc", "floor.1":"floor_desc", "antiquity.1":"antiquity_desc", "conservationState.1":"conservationState_desc", "hotWater.1":"hotWater_type_desc", "heating.1":"heating_desc"})
     bool_features_cols = ['furnished','parking', 'Aire acondicionado', 'Parquet', 'Horno', 'Microondas', 'Serv. portería', 'Balcón', 'Lavadero', 'Armarios', 'Calefacción',
@@ -27,7 +26,7 @@ def get_data(dir="data/"):
         'Cocina Office', 'Patio', 'Videoportero', 'Piscina', 'Gres Cerámica', 'Jardín Privado', 'Trastero', 'Internet', 'Domótica', 'TV',
         'Ascensor interior', 'Sistema Video vigilancia CCTV 24h', 'Z. Comunitaria', 'Zona Deportiva', 'Zona Infantil',
         'Piscina comunitaria', 'Gimnasio', 'Baño de huéspedes', 'Cuarto para el servicio', 'Jacuzzi', 'Bodega', 'Sauna',
-        'Cuarto lavado plancha', 'Energía Solar', 'elevator', 'Pista de Tenis', 'Porche cubierto'] # df.columns[45:87]
+        'Cuarto lavado plancha', 'Energía Solar', 'elevator', 'Pista de Tenis'] # df.columns[45:87]
     
     for colname in bool_features_cols:
         df[colname] = np.where(df[colname]>0, True, False)
