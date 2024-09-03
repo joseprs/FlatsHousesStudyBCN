@@ -5,6 +5,6 @@ End-to-end study and analysis of real estate properties for sale in Barcelona. F
 Here are the four parts with their respective Notebooks. **Each Notebook contains explanations, the process, and conclusions of the analysis.**
 
 1. **Flats Web Scraping** *(1.scraping_request.ipynb):* I gather values and characteristics of flats using web scraping techniques.
-2. **End-to-end Creation of a Flat Value Predictor** *(2.flat_prices_predictor.ipynb)*: I conduct an end-to-end Data Science Project.
+2. **End-to-end Creation of a Flat Value Predictor** *(2.flat_prices_predictor.ipynb)*: I conduct an end-to-end Data Science Project. From data processing, exploratory data analysis, handling missing values, and outlier removal to the creation and evaluation of a regression model that predicts apartment prices based on their characteristics.
 3. **Value, Value per sqm, and Neighbourhgood Analysis** *(3.value_and_price_per_sqm.ipynb)*: I analyze prices per square meter and by neighborhood.
 4. **Mortgage and Salary-oriented analysis** *(4.analysis_salary_and_mortgage.ipynb)*: I perform an analysis and extract interesting insights by correlating flat values with salaries and calculating mortgages.
