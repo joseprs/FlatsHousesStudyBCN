@@ -21,8 +21,8 @@ def data_processing(surface, rooms, bathrooms, pool, environment_value, elevator
     neighbor = "level8_" + neighbor.replace(" ","_")
     floor = "floor_desc_" + floor
 
-    X_test_columns = np.load("support_files/X_test_columns.npy", allow_pickle=True)
-    X_test_columns_dtypes = np.load("support_files/X_test_columns_dtypes.npy", allow_pickle=True)
+    X_test_columns = np.load("../support_files/X_test_columns.npy", allow_pickle=True)
+    X_test_columns_dtypes = np.load("../support_files/X_test_columns_dtypes.npy", allow_pickle=True)
 
     X_test_real = pd.DataFrame(columns=X_test_columns)
 
@@ -48,7 +48,7 @@ def data_processing(surface, rooms, bathrooms, pool, environment_value, elevator
 
 def predict_flat_value(input):
 
-    with open("models/flat_prices_predictor_model.pkl", 'rb') as file:  
+    with open("../models/flat_prices_model.pkl", 'rb') as file:  
         model = pickle.load(file)
     
     return model.predict(input)[0]
